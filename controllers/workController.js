@@ -3,6 +3,24 @@ import Works from "../models/workModel.js";
 import { ResponseError } from "../class/ResponseError.js";
 
 const workCtrl = {
+  getOneWork: async (req, res, next) => {
+    try {
+      const { id } = req.body;
+
+      if (!id) {
+        return next(new ResponseError(400, "Invalid id"));
+      }
+
+      const result = await Works.findById(id);
+
+      return res.json({
+        result,
+      });
+    } catch (error) {
+      console.log(error);
+      return next(new ResponseError(500, "Something went wrong"));
+    }
+  },
   getWorks: async (req, res, next) => {
     try {
       const { userId } = req.body;

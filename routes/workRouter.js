@@ -6,6 +6,8 @@ import auth from "../middleware/auth.js";
 
 const router = Router();
 
+router.post("/getOneWork", auth, workCtrl.getOneWork);
+
 router.post("/getWorks", auth, workCtrl.getWorks);
 
 router.post("/add", auth, workCtrl.add);
