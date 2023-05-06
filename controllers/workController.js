@@ -28,7 +28,9 @@ const workCtrl = {
         return next(new ResponseError(400, "Invalid user id"));
       }
 
-      const result = await Works.find({ userId: userId });
+      const result = await Works.find({ userId: userId }).sort({
+        expireDate: -1,
+      });
 
       return res.json({
         result,
